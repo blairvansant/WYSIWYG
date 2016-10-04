@@ -1,20 +1,11 @@
-// Create an array of objects that represents famous people (see structure below).
-// Create a text input in your DOM.
-// Beneath that, create a container, block element in your DOM.
-// Create a DOM element for each of the objects inside the container. Style your person elements however you like.
-// For every even numbered element, have a light yellow background.
-// For every odd numbered element, have a light blue background.
-// Each element's DOM structure should be as shown below.
-// When you click on one of the person elements, a dotted border should appear around it.
-// When you click on one of the person elements, the text input should immediately gain focus so that you can start typing.
-// When there is a highlighted person element, and you begin typing in the input box, the person's biography should be immediately bound to what you are typing, letter by letter.
-// When you press the enter/return key when typing in the input field, then the content of the input field should immediately be blank.
+
+
 var people = [
 	{
 	  title: "Samurai",
 	  name: "Tomoe Gozen",
 	  bio: "Serving under Minamoto Yoshinaka, Tomoe was one of his finest soldiers, and her skills in battle dwarfed many of those held by even the strongest men in her unit.",
-	  image: "https://upload.wikimedia.org/wikipedia/commons/4/48/Tomoe-Gozen.jpg"
+	  image: "https://upload.wikimedia.org/wikipedia/commons/4/48/Tomoe-Gozen.jpg",
 	  lifespan: {
 	    birth: 1747,
 	    death: 1797
@@ -24,7 +15,7 @@ var people = [
 	  title: "Samurai 2",
 	  name: "Tomoe Gozen",
 	  bio: "Serving under Minamoto Yoshinaka, Tomoe was one of his finest soldiers, and her skills in battle dwarfed many of those held by even the strongest men in her unit.",
-	  image: "https://upload.wikimedia.org/wikipedia/commons/4/48/Tomoe-Gozen.jpg"
+	  image: "https://upload.wikimedia.org/wikipedia/commons/4/48/Tomoe-Gozen.jpg",
 	  lifespan: {
 	    birth: 1747,
 	    death: 1797
@@ -34,7 +25,7 @@ var people = [
 	  title: "Samurai 3",
 	  name: "Tomoe Gozen",
 	  bio: "Serving under Minamoto Yoshinaka, Tomoe was one of his finest soldiers, and her skills in battle dwarfed many of those held by even the strongest men in her unit.",
-	  image: "https://upload.wikimedia.org/wikipedia/commons/4/48/Tomoe-Gozen.jpg"
+	  image: "https://upload.wikimedia.org/wikipedia/commons/4/48/Tomoe-Gozen.jpg",
 	  lifespan: {
 	    birth: 1747,
 	    death: 1797
@@ -44,7 +35,7 @@ var people = [
 	  title: "Samurai 4",
 	  name: "Tomoe Gozen",
 	  bio: "Serving under Minamoto Yoshinaka, Tomoe was one of his finest soldiers, and her skills in battle dwarfed many of those held by even the strongest men in her unit.",
-	  image: "https://upload.wikimedia.org/wikipedia/commons/4/48/Tomoe-Gozen.jpg"
+	  image: "https://upload.wikimedia.org/wikipedia/commons/4/48/Tomoe-Gozen.jpg",
 	  lifespan: {
 	    birth: 1747,
 	    death: 1797
@@ -54,28 +45,100 @@ var people = [
 	  title: "Samurai 5",
 	  name: "Tomoe Gozen",
 	  bio: "Serving under Minamoto Yoshinaka, Tomoe was one of his finest soldiers, and her skills in battle dwarfed many of those held by even the strongest men in her unit.",
-	  image: "https://upload.wikimedia.org/wikipedia/commons/4/48/Tomoe-Gozen.jpg"
-	  lifespan: {
+	  image: "https://upload.wikimedia.org/wikipedia/commons/4/48/Tomoe-Gozen.jpg",
+	  lifespan: {	
 	    birth: 1747,
 	    death: 1797
 	  }
-	},
+	 }
 	];
 
+	var userInput = document.getElementById("input");
+	var outputEl = document.getElementById("output");
+	var peopleContainer = document.getElementsByClassName("people__container");
+	var userInputOutput = document.getElementById("userOutput");
+	var counter = 0;	
 
-var counter = 0;
-var outputEl = document.getElementById("outputEl");
-for (; counter < 5; counter++) {
-  // Give each person element a unique identifier
-  outputEl.innerHTML += `<div class="person__container" id="person--${counter}"></div>`;
-}
+	function enterKeyPressed(keypress){
+		if (keypress.which === 13) {
+			userInput.value = "";
+		}
+	}
+	document.addEventListener("keypress", enterKeyPressed);
+ 
+	
+	for (; counter < 5 ; counter++) {
+		var peopleObjects = `<header>${people[counter].name}:`;
+			peopleObjects += `${people[counter].title}</header>`;
+			peopleObjects += `<img src="${people[counter].image}">`;
+			peopleObjects += `<footer>lifespan: ${people[counter].lifespan.birth} to `;
+			peopleObjects += `${people[counter].lifespan.death}</footer>`;
+			peopleObjects += `<section>${people[counter].bio}</section>`;
+  			outputEl.innerHTML += `<div class="people__container" id="people--${counter}">${peopleObjects}</div>`;
+	};
 
-// Now containerEl will have elements in it
-var containerEl = document.getElementsByClassName("person__container");
+	var bioSection;
+	for (var i = 0; i < peopleContainer.length; i++) {
+	    peopleContainer[i].addEventListener("click", function (event) {
+	    bioSection = this.childNodes[3];
+	    bioSection.parentElement.classList.toggle("border");
+    
+	    userInput.style.background = "lightgreen";
+        if(userInput.value === "enter text here"){
+          userInput.value = "";
+       	} else if (userInput.value === ""){
+       		userInput.style.background = "white";
+       		userInput.value = "enter text here";
+       	};
 
-// Event listeners are created
-for (var i = 0; i < containerEl.length; i++) {
-  containerEl[i].addEventListener("click", function (event) {
-    // Logic to execute when the element is clicked
-  });
-});
+       	userInput.focus();
+       	userInput.addEventListener("keyup", function (event){
+       		event.preventDefault();
+       		bioSection.innerHTML = userInput.value;
+       	});
+      }); 
+	} 
+
+	
+
+    
+
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	

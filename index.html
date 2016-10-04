@@ -1,8 +1,4 @@
-<!-- ///
-  HTML is a flexible specification. I just made up the person tag,
-  and that's perfectly legal. You can then style it with CSS however
-  you wish.
-/// -->
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -11,16 +7,15 @@
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 
 </head>
-<body>
+<body id="theBody">
 
-	<input type="text" placeholder="Enter Text">
-		<div id="outputEl">
-			<person class="person-container">
-			  <header id="header"><i>Name and title</i></header>
-			  <section id="section"><i>Bio</i></section>
-			  <footer id="footer"><i>Lifespan</i></footer>
-			</person>
+	 <div id="nav"><input id="input" value="enter text here" id="userInput"></div>
+		
+		<div class="container">
+			<div id="output"></div>
+			<div id="userOutput"></div>
 		</div>
+
     <script type="text/javascript" src="wysiwyg.js"></script>
 	<script src="http://code.jquery.com/jquery-1.9.1.js"></script>
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
