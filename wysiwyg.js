@@ -84,11 +84,11 @@ var people = [
 	    bioSection.parentElement.classList.toggle("border");
     
 	    userInput.style.background = "lightgreen";
-        if(userInput.value === "enter text here"){
+        if(userInput.value === "Add to selected bio"){
           userInput.value = "";
        	} else if (userInput.value === ""){
        		userInput.style.background = "white";
-       		userInput.value = "enter text here";
+       		userInput.value = "Add to selected bio";
        	};
 
        	userInput.focus();
